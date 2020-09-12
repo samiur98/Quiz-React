@@ -3,13 +3,14 @@ from flask import Flask
 from Database import mongo
 from Users import user_api
 from Quiz import quiz_api
+from Settings import secret_key, mongo_uri
 
 # Flask Application
 app = Flask(__name__)
-app.secret_key = "tempSecretKey"
+app.secret_key = secret_key
 
 # MongoDB initilization and configuration
-app.config["MONGO_URI"] = "mongodb://localhost:27017/quiz-react"
+app.config["MONGO_URI"] = mongo_uri
 mongo.init_app(app)
 
 # Registration of all blueprints in the project
