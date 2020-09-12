@@ -3,7 +3,6 @@ from flask import Blueprint
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask import jsonify, request
-from werkzeug.security import generate_password_hash, check_password_hash
 from Database import mongo
 
 quiz_api = Blueprint("quiz_api", __name__)

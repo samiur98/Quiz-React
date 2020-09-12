@@ -1,7 +1,6 @@
 #Import Statements
 from flask import Blueprint
 from bson.json_util import dumps
-from bson.objectid import ObjectId
 from flask import jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
 from Database import mongo
@@ -209,4 +208,3 @@ def password_change_badfield_response():
     response = jsonify("Request must have username, oldPassword, newPassword fields where newPassword and oldPassword must be atleast 8 charachters long")
     response.status_code = 403
     return response
-    
