@@ -23,6 +23,14 @@ def get_random_quizzes():
     response = dumps(random_quizzes)
     return response
 
+# Route for getting all quizzes whose titles match a specific search
+@quiz_api.route("search/<keyword>", methods = ["GET"])
+def search_quiz(keyword):
+    # Queries for quizzess whose title matches the keyword from the database
+    search_quizzes = mongo.db.quiz.find({"title": {"$regex": keyword}})
+    response = dumps(search_quizzes)
+    return response
+
 # Route for adding quiz to the database
 @quiz_api.route("addQuiz", methods = ["POST"])
 def add_quiz():
@@ -48,7 +56,7 @@ def add_quiz():
 
 # Route for deleting a quiz based on the quizzes ObjectID
 @quiz_api.route("deleteQuiz/<quizID>", methods = ["DELETE"])
-def deleteQuiz(quizID):
+def delete_quiz(quizID):
     # Makes query that deletes a quiz from the database.
     mongo.db.quiz.delete_one({"_id": ObjectId(quizID)})
     response = jsonify("Quiz deleted successfully")
