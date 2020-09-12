@@ -1,6 +1,5 @@
 #Import Statements
-from flask import Flask, Blueprint
-from flask_pymongo import PyMongo
+from flask import Blueprint
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask import jsonify, request
@@ -10,7 +9,7 @@ from Database import mongo
 user_api = Blueprint("user_api", __name__)
 
 # Route for getting all users in the database
-@user_api.route("/getAll", methods=["GET"])
+@user_api.route("/getAll", methods = ["GET"])
 def get_users():
     # Queries for all users in the database and returns a response object with the result of the query.
     all_users = mongo.db.users.find()
@@ -210,3 +209,4 @@ def password_change_badfield_response():
     response = jsonify("Request must have username, oldPassword, newPassword fields where newPassword and oldPassword must be atleast 8 charachters long")
     response.status_code = 403
     return response
+    

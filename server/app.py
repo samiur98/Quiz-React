@@ -1,12 +1,8 @@
 #Import Statements
 from flask import Flask
-from flask_pymongo import PyMongo
-from bson.json_util import dumps
-from bson.objectid import ObjectId
-from flask import jsonify, request
-from werkzeug.security import generate_password_hash, check_password_hash
 from Database import mongo
 from Users import user_api
+from Quiz import quiz_api
 
 # Flask Application
 app = Flask(__name__)
@@ -18,6 +14,7 @@ mongo.init_app(app)
 
 # Registration of all blueprints in the project
 app.register_blueprint(user_api, url_prefix = "/users")
+app.register_blueprint(quiz_api, url_prefix = "/quiz")
 
 
 if __name__ == "__main__":
